@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: #A68C8D;
+}
+/* Estilizando header */
+
+header{
+    display: flex;
+    justify-content: space-around;
+
+    background-color: #1B1B1B;
+}
+
+nav{
+    display: flex;
+}
+
+.ulHeader{
+    display: flex;
+    justify-self: center;
+    list-style-type: none;
+    margin: 10px;
+}
+
+.ulHeader > li a:link{
+    margin: 0px 20px 0px 20px;
+    text-decoration: none;
+    color: #A68C8D;
+}
+
+.ulHeader > li > a:visited{
+    text-decoration: none;
+    color: #A68C8D;
+}
+
+.imgIcoHeader{
+
+    transform: scale(0.1);
+
+    border: 1px solid white;
+}
+
+/* CONTINUAR ARRUMANDO A IMAGEM DO LINKEDIN, ADD AS IMAGENS PRIMEIRO E ARRUMAR A LISTA */

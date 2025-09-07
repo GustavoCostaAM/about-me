@@ -1,44 +1,56 @@
 *{
     margin: 0;
     padding: 0;
-    color: #A68C8D;
+    /* border: solid 1px black; */
 }
-/* Estilizando header */
 
+/* Configurações Gerais */
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+body{
+    color: #b4b4b4;
+}
+
+/* Estilizando header */
 header{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 
-    background-color: #1B1B1B;
+    position: sticky;
+    top: 0;
 }
 
-nav{
+header > nav {
+    background-color: #1B1B1B;
+    padding: 2vh 2vw;
+
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 87vw;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .ulHeader{
-    display: flex;
-    justify-self: center;
     list-style-type: none;
-    margin: 10px;
+    display: flex;
+
+    gap: 0 20%;
+
+    text-align: center;
+    align-items: center;
 }
 
-.ulHeader > li a:link{
-    margin: 0px 20px 0px 20px;
-    text-decoration: none;
-    color: #A68C8D;
+#linksHeader{
+    display: flex;
+    gap: 30%;
 }
-
-.ulHeader > li > a:visited{
-    text-decoration: none;
-    color: #A68C8D;
-}
-
 .imgIcoHeader{
-
-    transform: scale(0.1);
-
-    border: 1px solid white;
+    height: 3vh;
+    width: auto;
 }
-
-/* CONTINUAR ARRUMANDO A IMAGEM DO LINKEDIN, ADD AS IMAGENS PRIMEIRO E ARRUMAR A LISTA */

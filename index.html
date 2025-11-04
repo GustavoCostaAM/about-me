@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="PT-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,24 +28,24 @@
         </nav>
     </header>
 
-    <section id="inicio"> <!-- Section about me -->
-        <div>
-            <p>Meu nome é Gustavo Costa, nasci em 22/09/2009 em São Bernado do Campo. Atualmente moro com dois irmãos, minha mãe e meu padastro.
+    <main> <!-- main about me -->
+        <div id="divIntro">
+            <p id="textoIntro">Meu nome é Gustavo Costa, nasci em 22/09/2009 em São Bernado do Campo. Atualmente moro com dois irmãos, minha mãe e meu padastro.
                 atualmente estudo no instituto J&F.
             </p>
-            <img src="" alt="" srcset="">
-            <a href="#Curiosidades"><button>Conheça mais</button></a>
+            <a href="#Curiosidades" id="linkIntro"><button id="buttonIntro">Conheça mais</button></a>
         </div>
         <div>
-            <img src="/images/homePage/fotoMain.jpg" alt="Minha foto">
+            <img src="/images/homePage/fotoMain.jpg" alt="Minha foto" id="fotoIntro">
         </div>
-    </section>
+    </main>
 
-    <hr> <!-- Divisa de tópico -->
+    <hr id="firstHr"> <!-- Divisa de tópico -->
 
-    <section id="Curiosidades"> <!-- Section Curiosidades -->
-        <h1>Curiosidades</h1>
-        <ol type="a">
+    <section class="info"> <!-- Section Curiosidades -->
+        <img src="/images/homePage/grupoInter.jpg" alt="Grupo do meu interdisciplinar" class="imgInfo">
+        <ol type="a" class="listaInfo">
+            <h1>Curiosidades</h1>
             <li>Jogo tenis de mesa</li>
             <li>Não gosto de chocolate preto (apenas o branco)</li>
             <li>Tenho um irmão gêmeo</li>
@@ -56,28 +56,35 @@
 
     <hr> <!-- Divisa de tópico -->
 
-    <section id="LugaresConhecidos"> <!-- Section Lugares Conhecidos -->
-        <h1>Lugares que já fui</h1>
-        <ul>
+    <section class="info"> <!-- Section Lugares Conhecidos -->
+        <img src="/images/homePage/cidade-de-laguna.jpg" alt="Imagem de Laguna" class="imgInfo">
+        <ul class="listaInfo">
+            <h1>Lugares que já fui</h1>
             <li>Minas Gerais (quase sul de bahia)</li>
             <li>Santa Catarina</li>
+            <li>São Roque</li>
+            <li>Campinas</li>
+            <li>Laguna</li>
         </ul>
     </section>
 
     <hr> <!-- Divisa de tópico -->
 
-    <section> <!-- Section Lugares para Conhecer -->
-        <h1>Lugares que quero ir</h1>
-        <ol type="I">
+    <section class="info"> <!-- Section Lugares para Conhecer -->
+        <img src="images/homePage/japao-centro.jpg" alt="Imagem de Japão" class="imgInfo">
+        <ol type="I" class="listaInfo">
+            <h1>Lugares que quero ir</h1>
             <li>Estados Unidos</li>
             <li>Espanha</li>
             <li>Japão</li>
             <li>França</li>
-            <li>Portugual</li>
+            <li>Arábia Saudita</li>
         </ol>
     </section>
 
-
+    <footer>
+        
+    </footer>
 
 </body>
 </html>

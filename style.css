@@ -5,6 +5,20 @@
 }
 
 /* Configurações Gerais */
+hr{
+    width: 80vw;
+    justify-self: center;
+    margin: 10vh;
+}
+
+#firstHr{
+    margin-top: 45vh;
+}
+
+body{
+    background-color: #080808;
+}
+
 a{
     text-decoration: none;
     color: inherit;
@@ -12,6 +26,10 @@ a{
 
 body{
     color: #b4b4b4;
+}
+
+li{
+    margin: 2vh;
 }
 
 /* Estilizando header */
@@ -53,4 +71,67 @@ header > nav {
 .imgIcoHeader{
     height: 3vh;
     width: auto;
+}
+
+/* Editando a main */
+main{
+    display: flex;
+    justify-content: space-evenly;
+
+    padding-top: 10vh;
+    padding-bottom: 2.5vh;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
+}
+
+#divIntro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    width: 40vw;
+    text-align: justify;
+
+    gap: 3vh;
+}
+
+#textoIntro{
+    width: 30vw;
+    font-size: 1.2rem;
+}
+
+#buttonIntro{
+    background-color: #00C97A;
+    border: none;
+    color: white;
+
+    padding: 5%;
+
+    width: 20vw;
+
+    box-shadow: 0 0 25px rgba(99, 187, 27, 0.7);
+    border-radius: 5px;
+}
+
+#fotoIntro{
+    width: 20vw;
+    height: 20vw;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* estilizando as infos */
+
+.info{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.listaInfo{
+    width: 32vw;
+}
+
+.imgInfo{
+    width: 30vw;
 }

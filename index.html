@@ -11,39 +11,38 @@
         <nav>
             <div>
                 <ul class="ulHeader">
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#habilidades">Habilidades</a></li>
-                    <li><a href="#projetos">Projetos</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                    <li><a href="#github">Github</a></li>
+                    <li><a href="index.html" style="color: brown">Inicio</a></li>
+                    <li><a href="projects/projects.html">Projetos</a></li>
+                    <li><a href="germinaFlix/index.html" id="link">GerminaFlix</a></li>
+                    <li><a href="mailto:gustavo.macal@germinare.org.br" id="link">Contato</a></li>
                 </ul>
             </div>
             
             <div>
                 <ul class="ulHeader" id="linksHeader">
-                    <li><a href="#"><img src="/images/homePage/LinkedIn.png" alt="Link do LinkedIn" class="imgIcoHeader"></a></li>
-                    <li><a href="#"><img src="/images/homePage/github.png" alt="Link do Github" class="imgIcoHeader" id="imgGithub"></a></li>
+                    <li><a href="#"><img src="images/homePage/LinkedIn.png" alt="Link do LinkedIn" class="imgIcoHeader"></a></li>
+                    <li><a href="#"><img src="images/homePage/github.png" alt="Link do Github" class="imgIcoHeader" id="imgGithub"></a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
-    <main> <!-- main about me -->
+    <main id="divMain"> <!-- main about me -->
         <div id="divIntro">
             <p id="textoIntro">Meu nome é Gustavo Costa, nasci em 22/09/2009 em São Bernado do Campo. Atualmente moro com dois irmãos, minha mãe e meu padastro.
                 atualmente estudo no instituto J&F.
             </p>
-            <a href="#Curiosidades" id="linkIntro"><button id="buttonIntro">Conheça mais</button></a>
+            <a href="#curiosidades" id="linkIntro"><button id="buttonIntro">Conheça mais</button></a>
         </div>
         <div>
-            <img src="/images/homePage/fotoMain.jpg" alt="Minha foto" id="fotoIntro">
+            <img src="images/homePage/fotoMain.jpg" alt="Minha foto" id="fotoIntro">
         </div>
     </main>
 
     <hr id="firstHr"> <!-- Divisa de tópico -->
 
-    <section class="info"> <!-- Section Curiosidades -->
-        <img src="/images/homePage/grupoInter.jpg" alt="Grupo do meu interdisciplinar" class="imgInfo">
+    <section class="info" id="curiosidades"> <!-- Section Curiosidades -->
+        <img src="images/homePage/grupoInter.jpg" alt="Grupo do meu interdisciplinar" class="imgInfo">
         <ol type="a" class="listaInfo">
             <h1>Curiosidades</h1>
             <li>Jogo tenis de mesa</li>
@@ -57,7 +56,6 @@
     <hr> <!-- Divisa de tópico -->
 
     <section class="info"> <!-- Section Lugares Conhecidos -->
-        <img src="/images/homePage/cidade-de-laguna.jpg" alt="Imagem de Laguna" class="imgInfo">
         <ul class="listaInfo">
             <h1>Lugares que já fui</h1>
             <li>Minas Gerais (quase sul de bahia)</li>
@@ -66,11 +64,12 @@
             <li>Campinas</li>
             <li>Laguna</li>
         </ul>
+        <img src="images/homePage/cidade-de-laguna.jpg" alt="Imagem de Laguna" class="imgInfo">
     </section>
 
     <hr> <!-- Divisa de tópico -->
 
-    <section class="info"> <!-- Section Lugares para Conhecer -->
+    <section class="info" id="lugares"> <!-- Section Lugares para Conhecer -->
         <img src="images/homePage/japao-centro.jpg" alt="Imagem de Japão" class="imgInfo">
         <ol type="I" class="listaInfo">
             <h1>Lugares que quero ir</h1>
@@ -83,7 +82,10 @@
     </section>
 
     <footer>
-        
+        <div>
+            <p>&copy;<b>todos os direitos reservados</b>&reg;</p>
+            <a href="mailto:gustavo.macal@germinare.org.br">gustavo.macal@germinare.org.br</a>
+        </div>
     </footer>
 
 </body>

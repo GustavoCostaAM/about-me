@@ -1,0 +1,17 @@
+main{
+    display: flex;
+    flex-direction: column;
+}
+
+.textExplanation{
+    width: 40%;
+}
+
+.imgProject{
+    width: 20%;
+}
+
+.linkExplanation{
+    color: rgb(147, 147, 199);
+    text-decoration: underline;
+}

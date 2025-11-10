@@ -1,0 +1,61 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: rgb(24, 22, 22);
+    user-select: none;
+}
+body::-webkit-scrollbar{
+    display: none;
+}
+
+
+
+#direitaHeader{
+    display: flex;
+}
+.irCatalogo{
+    background-color: red;
+    padding: 5px;
+    margin-right: 30px;
+    border: none;
+    border-radius: 3px;
+}
+.irCatalogo:hover{
+    cursor: pointer;
+    color: white;
+    outline: solid 2px black;
+}
+
+#campoGeral{
+    margin-top: 25px;
+    margin-left: 25px;
+    display: flex;
+    color: rgb(166, 161, 161);
+}
+
+#campoImg > img{
+    border-radius: 10px;
+}
+
+#espaco2{
+    margin-left: 25px;
+    width: 600px;
+}
+#espaco2 > p{
+    margin-top: 20px;
+}
+
+section{
+    display: flex;
+}
+
+.video{
+    width: 500px;
+    display: flex;
+    justify-content: right;
+    margin: 25px;
+    border-radius: 10px;
+}

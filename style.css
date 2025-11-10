@@ -5,6 +5,10 @@
 }
 
 /* Configurações Gerais */
+html {
+    scroll-behavior: smooth;
+}
+
 hr{
     width: 80vw;
     justify-self: center;
@@ -16,7 +20,7 @@ hr{
 }
 
 body{
-    background-color: #080808;
+    background-color: #242020;
 }
 
 a{
@@ -30,6 +34,11 @@ body{
 
 li{
     margin: 2vh;
+    font-size: 1.2rem;
+}
+
+#link:active{
+    color: brown;
 }
 
 /* Estilizando header */
@@ -112,6 +121,13 @@ main{
 
     box-shadow: 0 0 25px rgba(99, 187, 27, 0.7);
     border-radius: 5px;
+
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+#buttonIntro:hover{
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(69, 132, 19, 0.4);
 }
 
 #fotoIntro{
@@ -121,8 +137,12 @@ main{
     border-radius: 50%;
 }
 
-/* estilizando as infos */
+/* estilizando worked with */
+#fundoWorkedWith{
+    display: flex;
+}
 
+/* estilizando as infos */
 .info{
     display: flex;
     justify-content: space-evenly;
@@ -134,4 +154,12 @@ main{
 
 .imgInfo{
     width: 30vw;
+}
+
+footer{
+    margin-top: 3%;
+    
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }

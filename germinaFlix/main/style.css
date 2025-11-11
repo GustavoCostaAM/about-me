@@ -71,14 +71,14 @@ main{
     background-color: #2B2A38;
     padding: 20px;
     border-radius: 10px;
-    min-width: 300px;
+    min-width: 25vw;
     min-height: 200px;
     margin-right: 50px;
     color: white;
+    transition: 0.2s ease-in-out;
 }
 .itemCatalogo:hover{
-    outline: solid 5px black;
-    transform: scale(1.05);
+    outline: solid 1px white;
 }
 .conteudoItem{
     margin-left: 25px;

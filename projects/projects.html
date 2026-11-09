@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="PT-BR">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../style.css" integrity="sha384-rb5Lbbv6NKO/vuf9FD3Ah6LjSIjtAZjRvhFjruUJNexp2U3RABIMSMClBoPJUMVN">
+    <link rel="stylesheet" href="css/style.css" integrity="sha384-g7sv8XOVC1CynIxcWH9YRM0r2h09KpTJcPAM0PpKpkPSPLgq8PogEDsl6cht0eVW">
     <title>Projetos</title>
 </head>
 
@@ -13,49 +13,50 @@
     <header>
         <nav>
             <div>
-                <ul class="ulHeader">
+                <ul class="ul-header">
                     <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="#firstHr" style="color: brown">Projetos</a></li>
-                    <li><a href="../germinaFlix/index.html" id="link">GerminaFlix</a></li>
-                    <li><a href="mailto:gustavo.macal@germinare.org.br" id="link">Contato</a></li>
+                    <li><a href="#projects" aria-current="page">Projetos</a></li>
+                    <li><a href="../germinaFlix/index.html" class="nav-link">GerminaFlix</a></li>
+                    <li><a href="mailto:gustavo.macal@germinare.org.br" class="nav-link">Contato</a></li>
                 </ul>
             </div>
 
             <div>
-                <ul class="ulHeader" id="linksHeader">
+                <ul class="ul-header" id="links-header">
                     <li><a href="#"><img src="../images/homePage/LinkedIn.png" alt="Link do LinkedIn"
-                                class="imgIcoHeader"></a></li>
-                    <li><a href="https://github.com/GustavoCostaAM" target="_blank"><img src="../images/homePage/github.png" alt="Link do Github" class="imgIcoHeader"
-                                id="imgGithub"></a></li>
+                                class="img-ico-header"></a></li>
+                    <li><a href="https://github.com/GustavoCostaAM" target="_blank" rel="noopener noreferrer"><img src="../images/homePage/github.png" alt="Link do Github" class="img-ico-header"
+                                id="img-github"></a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
-    <main>
+    <main id="projects">
+        <h1>Projetos</h1>
         <section class="info">
-            <img src="../images/projects/ScaneiaLogo.png" alt="Logo ScaneIA" class="imgProject">
-            <p class="textExplanation">O ScaneIA é um aplicativo que digitaliza as planilhas de uma indústria, faz
+            <img src="../images/projects/ScaneiaLogo.png" alt="Logo ScaneIA" class="img-project">
+            <p class="text-explanation">O ScaneIA é um aplicativo que digitaliza as planilhas de uma indústria, faz
                 análises e dashboards em cima dessas informações. Como co-fundador do ScaneIA, fui responsavel por fazer
                 a área do RH no site, parte responsável por gerir o acesso das pessoas no aplicativo.
                 <br>
-                Github: <a href="https://github.com/ScaneIA" target="_blank"
-                    class="linkExplanation">https://github.com/ScaneIA</a>
+                Github: <a href="https://github.com/ScaneIA" target="_blank" rel="noopener noreferrer"
+                    class="link-explanation">https://github.com/ScaneIA</a>
             </p>
         </section>
 
         <hr>
 
         <section class="info">
-            <p class="textExplanation">A Trustable Feedback é um projeto que visa classificar comentários e avaliações
+            <p class="text-explanation">A Trustable Feedback é um projeto que visa classificar comentários e avaliações
                 entre justos ou injustos. É um web service hospedado no render, conta com sua API feita em spring boot
                 para gerir os tokens, histórico de classificação e informações da empresa. Para a IA, foi usado uma
                 biblioteca em Python chamada TensorFlow, com dataset com mais de 10 mil dados.
                 <br>
-                Github: <a href="https://github.com/Trustable-Feedbacks" target="_blank"
-                    class="linkExplanation">https://github.com/Trustable-Feedbacks</a>
+                Github: <a href="https://github.com/Trustable-Feedbacks" target="_blank" rel="noopener noreferrer"
+                    class="link-explanation">https://github.com/Trustable-Feedbacks</a>
             </p>
-            <img src="../images/projects/TrustableFeedbackLogo.png" alt="Logo Trustable Feedback" class="imgProject">
+            <img src="../images/projects/TrustableFeedbackLogo.png" alt="Logo Trustable Feedback" class="img-project">
         </section>
     </main>
 

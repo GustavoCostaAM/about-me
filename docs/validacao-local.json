@@ -1,0 +1,255 @@
+{
+  "recordedAt": "2026-11-08T22:26:39.433294-03:00",
+  "baseCommit": "94efab59054d38d64e72429cde04a6849488b449",
+  "testedTree": "uncommitted working tree; no branch, commit, PR or deployment created",
+  "integrity": {
+    "baseUrl": "https://gustavocostaam.github.io/about-me/",
+    "pages": [
+      "germinaFlix/index.html",
+      "germinaFlix/main/index.html",
+      "germinaFlix/saiba Mais/havog/index.html",
+      "germinaFlix/saiba Mais/oppenheimer/index.html",
+      "index.html",
+      "projects/projects.html"
+    ],
+    "files": [
+      "germinaFlix/index.html",
+      "germinaFlix/main/index.html",
+      "germinaFlix/main/style.css",
+      "germinaFlix/saiba Mais/havog/index.html",
+      "germinaFlix/saiba Mais/oppenheimer/index.html",
+      "germinaFlix/saiba Mais/style.css",
+      "images/germinaFlix/icons/Gflix - icon.png",
+      "images/germinaFlix/icons/user icon.png",
+      "images/germinaFlix/mais assistidos/Casa Blanca.png",
+      "images/germinaFlix/mais assistidos/Havog.png",
+      "images/germinaFlix/mais assistidos/Minecraft.png",
+      "images/germinaFlix/mais assistidos/Pecadores.png",
+      "images/germinaFlix/mais assistidos/Rocky.png",
+      "images/germinaFlix/mais assistidos/seven.png",
+      "images/germinaFlix/mais assistidos/Taxi Driver.png",
+      "images/germinaFlix/mais assistidos/The Last of Us.png",
+      "images/germinaFlix/mais assistidos/Tubarão.png",
+      "images/germinaFlix/mais assistidos/Voce.png",
+      "images/germinaFlix/recomendados/Andor.png",
+      "images/germinaFlix/recomendados/Demolidor.png",
+      "images/germinaFlix/recomendados/Drive.png",
+      "images/germinaFlix/recomendados/Duna.png",
+      "images/germinaFlix/recomendados/Her.png",
+      "images/germinaFlix/recomendados/Nope.png",
+      "images/germinaFlix/recomendados/O contador.png",
+      "images/germinaFlix/recomendados/oppenheimer.png",
+      "images/germinaFlix/recomendados/Soul.png",
+      "images/germinaFlix/recomendados/Tempo de guerra.png",
+      "images/homePage/cidade-de-laguna.jpg",
+      "images/homePage/fotoMain.jpg",
+      "images/homePage/github.png",
+      "images/homePage/grupoInter.jpg",
+      "images/homePage/japao-centro.jpg",
+      "images/homePage/LinkedIn.png",
+      "images/projects/ScaneiaLogo.png",
+      "images/projects/TrustableFeedbackLogo.png",
+      "index.html",
+      "projects/css/style.css",
+      "projects/projects.html",
+      "style.css"
+    ],
+    "errors": [],
+    "externalUrls": [
+      "https://github.com/GustavoCostaAM",
+      "https://github.com/ScaneIA",
+      "https://github.com/Trustable-Feedbacks",
+      "https://www.imdb.com/pt/title/tt14123284/?ref_=nv_sr_srsg_0_tt_7_nm_1_in_0_q_havo",
+      "https://www.imdb.com/pt/title/tt15398776/?ref_=nv_sr_srsg_0_tt_5_nm_3_in_0_q_op",
+      "https://www.imdb.com/pt/title/tt18923754/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_demolidor",
+      "https://www.imdb.com/pt/title/tt31193180/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_pecadores",
+      "https://www.imdb.com/pt/title/tt31434639/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_tempo%2520de%2520guerra",
+      "https://www.imdb.com/pt/title/tt3566834/?ref_=fn_all_ttl_1",
+      "https://www.imdb.com/pt/title/tt3581920/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_The%2520las",
+      "https://www.imdb.com/pt/title/tt7068946/?ref_=nv_sr_srsg_0_tt_6_nm_2_in_0_q_o%2520con",
+      "https://www.imdb.com/pt/title/tt7335184/?ref_=nv_sr_srsg_0_tt_7_nm_1_in_0_q_voce",
+      "https://www.imdb.com/pt/title/tt9253284/?ref_=nv_sr_srsg_0_tt_4_nm_4_in_0_q_andor",
+      "https://www.imdb.com/title/tt0034583/",
+      "https://www.imdb.com/title/tt0073195/",
+      "https://www.imdb.com/title/tt0075148/",
+      "https://www.imdb.com/title/tt0075314/",
+      "https://www.imdb.com/title/tt0114369/",
+      "https://www.imdb.com/title/tt0780504/",
+      "https://www.imdb.com/title/tt10954984/",
+      "https://www.imdb.com/title/tt1160419/",
+      "https://www.imdb.com/title/tt15398776/",
+      "https://www.imdb.com/title/tt1798709/",
+      "https://www.imdb.com/title/tt2948372/",
+      "https://www.youtube.com/embed/F3OxA9Cz17A?si=ZZqW6erko1ytW2jn&controls=0",
+      "https://www.youtube.com/embed/bBd0d-LORLw?si=3guYT6ucUolfgbM3&controls=0"
+    ]
+  },
+  "checks": {
+    "build": "passed: 40 public files plus .nojekyll",
+    "integrity": "passed: 6 HTML pages, zero local errors",
+    "regressions": "8 tests passed",
+    "javascriptSyntax": "node --check passed",
+    "yamlSyntax": "both workflows parsed with PyYAML BaseLoader; no Actions execution",
+    "cssSupplemental": "tinycss2 parsed four stylesheets; does not replace Stylelint",
+    "htmlLint": "blocked: html-validate not installed",
+    "cssLint": "blocked: stylelint not installed",
+    "accessibility": "blocked: ERR_MODULE_NOT_FOUND for playwright",
+    "lockfile": "blocked: npm ENOTFOUND registry.npmjs.org",
+    "external": {
+      "exitCode": 0,
+      "checked": 26,
+      "warnings": 26,
+      "diagnostics": [
+        {
+          "url": "https://github.com/GustavoCostaAM",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://github.com/ScaneIA",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://github.com/Trustable-Feedbacks",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/pt/title/tt14123284/?ref_=nv_sr_srsg_0_tt_7_nm_1_in_0_q_havo",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/pt/title/tt15398776/?ref_=nv_sr_srsg_0_tt_5_nm_3_in_0_q_op",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/pt/title/tt18923754/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_demolidor",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/pt/title/tt31193180/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_pecadores",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/pt/title/tt31434639/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_tempo%2520de%2520guerra",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/pt/title/tt3566834/?ref_=fn_all_ttl_1",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/pt/title/tt3581920/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_The%2520las",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/pt/title/tt7068946/?ref_=nv_sr_srsg_0_tt_6_nm_2_in_0_q_o%2520con",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/pt/title/tt7335184/?ref_=nv_sr_srsg_0_tt_7_nm_1_in_0_q_voce",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/pt/title/tt9253284/?ref_=nv_sr_srsg_0_tt_4_nm_4_in_0_q_andor",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/title/tt0034583/",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/title/tt0073195/",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/title/tt0075148/",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/title/tt0075314/",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/title/tt0114369/",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/title/tt0780504/",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/title/tt10954984/",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/title/tt1160419/",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/title/tt15398776/",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/title/tt1798709/",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.imdb.com/title/tt2948372/",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.youtube.com/embed/F3OxA9Cz17A?si=ZZqW6erko1ytW2jn&controls=0",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        },
+        {
+          "url": "https://www.youtube.com/embed/bBd0d-LORLw?si=3guYT6ucUolfgbM3&controls=0",
+          "warning": "<urlopen error [Errno 11001] getaddrinfo failed>"
+        }
+      ]
+    },
+    "pagesSettings": "not inspected successfully; origin and source still unconfirmed",
+    "remoteCI": "not executed",
+    "CD": "not executed; only after user merges"
+  },
+  "publicSourceSha256": {
+    "germinaFlix/index.html": "934372a64d05551d0aaeb9eb0a8ffdc1244c86f24eac0fdc5f19b1871e60e9b3",
+    "germinaFlix/main/index.html": "1a41638694446c163602ec2b9002ae8439acde509172a60e79cfe41955190ac0",
+    "germinaFlix/main/style.css": "02a05b01f42b2d72ac1ff84fd8ddc619968519942bf461cdf1c3e9268af130c9",
+    "germinaFlix/saiba Mais/havog/index.html": "0b381f425e61eee7e17e1d3289180052f15edd01257eb368325a9b5b634cfa90",
+    "germinaFlix/saiba Mais/oppenheimer/index.html": "93815fdf73928cf371a4d741ba72e2fc01641cab5b312d2b6800bd8e7be39938",
+    "germinaFlix/saiba Mais/style.css": "16f94918442741cc4f52f216441ad5694130d846a6ed1f41025db8d19607ab15",
+    "images/germinaFlix/icons/Gflix - icon.png": "e8b4fff4640a4cada9e65ba5404a79f504e642e3f00706f608ae16453da4aa55",
+    "images/germinaFlix/icons/user icon.png": "fa03d364260297bcc5d86592dfb961b6949c78b8780bbdd3f1520862fd6b2b33",
+    "images/germinaFlix/mais assistidos/Casa Blanca.png": "bdae36c0c86c72475754d86b514d918604df7dae9d36fc7a0afa930b32cd9567",
+    "images/germinaFlix/mais assistidos/Havog.png": "84de113da41b4260ad712c091b7d8d2ec7ae28c4f015f651ba6b342fee9b6f55",
+    "images/germinaFlix/mais assistidos/Minecraft.png": "8a056019c46cbcb2f12a1394823a2f64f35aa47c4248b5ad8ea91976d066ca86",
+    "images/germinaFlix/mais assistidos/Pecadores.png": "fbf42337896aa269858bf6e8afe93440ac6fb6dc9fe7605cf57bec7806c28dd8",
+    "images/germinaFlix/mais assistidos/Rocky.png": "b346345ad0ba2db56d116d0c9c4c011a0d01cce6affd617316604582ac79c954",
+    "images/germinaFlix/mais assistidos/seven.png": "1c7d4940aa1488b1a49c363639e94a4787683e51475fa089335e392c740e70eb",
+    "images/germinaFlix/mais assistidos/Taxi Driver.png": "3b465b520a1780bc9d110839a6eb64da9418d8e5fa0d2ff782f28dd4983a52c5",
+    "images/germinaFlix/mais assistidos/The Last of Us.png": "dffe674b37e915d156bbfd20236d6d07d59c7a846cc2c6394ead3d8459af179f",
+    "images/germinaFlix/mais assistidos/Tubarão.png": "dab46853bd28c2e07009fd1595cbcce748f41ff75e47250cdbd06883c2ecbf0b",
+    "images/germinaFlix/mais assistidos/Voce.png": "77af22625e0b30e9588d785eb9e6146cf38db0ac50e75ff545cfb6d78ab01587",
+    "images/germinaFlix/recomendados/Andor.png": "6c078821b533c42c4b9088b72dbe91c7ff295f1a461cb96fa914b3688dff0410",
+    "images/germinaFlix/recomendados/Demolidor.png": "dbcf0da58711870ce09ce6f2c4d37475f48e2d5fa5284eee8597b620e15ea980",
+    "images/germinaFlix/recomendados/Drive.png": "1928b935da6abb35fe494b37638a6725839d81d9639d78f2c341b1271db17ad4",
+    "images/germinaFlix/recomendados/Duna.png": "ee12616c5cb14cade30916f305d204ce5415b2fb2782d2dfd5683166df3e2fa7",
+    "images/germinaFlix/recomendados/Her.png": "09d7e99929075ff9d05879f1f6e3f60db1d4a35182c95da0596b3172d726cda2",
+    "images/germinaFlix/recomendados/Nope.png": "b811a626e4ff62f8b51d81be107594f029a6f8ee7c1bbd893a299217517f58f6",
+    "images/germinaFlix/recomendados/O contador.png": "0d6199b9594ad18fbcd7d24acede74d1b0d2ccaa537d6b182597f4fbc8199cf3",
+    "images/germinaFlix/recomendados/oppenheimer.png": "42be5abc60690aacf8c3ea31423fe7040ba448b4aa1c8fd2a1753e233bb0441a",
+    "images/germinaFlix/recomendados/Soul.png": "7f2f9076014f211fbb48b2bee441e43e382111801376170ef35bb086968f55fd",
+    "images/germinaFlix/recomendados/Tempo de guerra.png": "0810ee10e8b5603d4eeaabf8b998d922dfd147ce79631e92b80c77f54f3a3815",
+    "images/homePage/cidade-de-laguna.jpg": "fd1bf28e15adc89d36602b350cff81a944d1a3b5135bd81854fe8f0a90bed044",
+    "images/homePage/fotoMain.jpg": "01fca0bd077133dbdd68819a81b28741499aa891882af8ee9bcd0d94b1a2d97c",
+    "images/homePage/github.png": "66a7f1606c8efde27187cadad15aee8f1687cd4c0ad440c6110f5948262e6c1a",
+    "images/homePage/grupoInter.jpg": "3aba1295bf4bf51401a93cde8b06b0210938241af1c864306dbd49ae8154fa21",
+    "images/homePage/japao-centro.jpg": "e637fc519ff9e76ec74f81649b4bcd9586f3e78aec27a6e688228ac9fcd424da",
+    "images/homePage/LinkedIn.png": "0c26993a0052973574fe7ef4227a0639f8225d891decb63165566e4022530c15",
+    "images/projects/ScaneiaLogo.png": "f928b670b4c46d853b654550bfa4cd04e884642ddd5e45972e1b2745edc91b49",
+    "images/projects/TrustableFeedbackLogo.png": "c131240322c8d732c05c39d3d36fac44e6e0ea8a0b4c16ef29cac600014b9233",
+    "index.html": "16d0e00596118f67aead718649cdd0a3bfd1ffe101f41213a15fa29ef6dcb4a5",
+    "projects/css/style.css": "11d54934ceb790d86c6fbd7fe7119a78d1cbebbc768691271ed3b808a65e6f38",
+    "projects/projects.html": "7aba6b00ca586ba35d1049df0adce205ce6b3aa17455da51f546afa9a90d3863",
+    "style.css": "20ec33a339e52e4d19632cbb76448c0aac5b2d92efc311fab8241853f427a5b2"
+  }
+}

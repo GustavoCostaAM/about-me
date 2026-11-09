@@ -92,6 +92,11 @@ geradas, sem excluir páginas-fonte do site. Os dois CLIs são chamados pelo Nod
 evitando um problema observado nos launchers `.cmd` locais do Windows. O glob
 continua cobrindo todos os arquivos HTML/CSS do site.
 
+Stylelint usa `.stylelintignore` para node_modules, dist e reports. Não há globs
+de exclusão sem aspas na linha de comando: isso evita que o shell Linux os expanda
+em arquivos extras passados como entradas. O modo verbose lista as folhas
+efetivamente verificadas, permitindo conferir a cobertura no log da CI.
+
 As folhas locais têm SRI SHA-384 nos HTML. Após editar CSS, executar
 `npm run update:sri` e versionar os HTML atualizados junto com o CSS. O checker de
 integridade reprova hashes desatualizados, para impedir que o navegador recuse os

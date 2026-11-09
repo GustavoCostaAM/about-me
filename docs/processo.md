@@ -1,7 +1,7 @@
 # Registro observado da implementação
 
 Este registro é cronológico. Os bloqueios de uma etapa anterior podem ter sido
-resolvidos nas seguintes; o estado mais recente está no quarto retorno abaixo.
+resolvidos nas seguintes; o estado mais recente está no quinto retorno abaixo.
 
 ## Origem e histórico disponível
 
@@ -16,10 +16,11 @@ reportadas por `git status --short`. O remoto observado é
 README ou arquivo AGENTS encontrado na árvore do projeto. As instruções AGENTS
 fornecidas na conversa também foram consideradas.
 
-Há **4 prompts do usuário** disponíveis neste histórico: o pedido de implementação,
+Há **5 prompts do usuário** disponíveis neste histórico: o pedido de implementação,
 registrado em [prompts.md](prompts.md), o retorno sobre módulos na CI do PR 1,
 o terceiro retorno com erros de Ubuntu/linters e o quarto com falha de contexto
-do Playwright. Os retornos estão registrados nas seções correspondentes abaixo.
+do Playwright, além do quinto retorno sobre imagens/HTML tratados como CSS.
+Os retornos estão registrados nas seções correspondentes abaixo.
 As mensagens de andamento do agente descrevem a
 inspeção, as escolhas, os resultados e os bloqueios; não são novos prompts do usuário.
 Existem resumos de conversas anteriores no contexto, não uma transcrição completa;
@@ -229,6 +230,43 @@ regra ou página. `node --check tools/accessibility.mjs` passou, assim como a
 checagem de whitespace do diff. A tentativa de `npm run test:a11y` reprovou antes
 de abrir qualquer página: o executável Chromium não existe no cache do ambiente
 local. Não houve confirmação da correção em execução remota neste retorno.
+
+### Quinto retorno: arquivos de dist recebidos como CSS
+
+Trechos literais do prompt do usuário, com resumo explícito do restante do log:
+
+> agora tem erro de lint em css
+
+```text
+> node node_modules/stylelint/bin/stylelint.mjs "**/*.css" --ignore-pattern node_modules/** --ignore-pattern dist/**
+
+dist/images/homePage/LinkedIn.png
+  9:135  ✖  Unclosed string  CssSyntaxError
+
+dist/index.html
+  1:1  ✖  Unknown word <  CssSyntaxError
+
+✖ 32 problems (32 errors, 0 warnings)
+```
+
+O restante do log contém diagnósticos semelhantes em outras imagens e no HTML de
+Projetos em dist. São entradas de tipo errado, não violações nas folhas CSS.
+Os globs `node_modules/**` e `dist/**` dos argumentos de ignore estavam sem aspas:
+no shell Linux podem expandir em vários caminhos antes de chegar ao Stylelint.
+Os caminhos extras viram entradas posicionais e acabam analisados como CSS.
+
+O agente moveu as exclusões para `.stylelintignore`, com node_modules, dist e
+reports, removendo esses argumentos da linha de comando. O único glob restante
+é `"**/*.css"`, entre aspas, para seleção pelo próprio Stylelint. Adicionado
+`--formatter verbose` para registrar os arquivos efetivamente analisados.
+Nenhuma folha-fonte ou regra de lint foi excluída, e nenhum binário foi alterado.
+
+Validação observada: `npm run lint:css` terminou com código 0, **4 sources checked**
+e **0 problems found**. A lista contém style.css, germinaFlix/main/style.css,
+germinaFlix/saiba Mais/style.css e projects/css/style.css. A pasta dist existia
+com 34 HTML/imagens no momento da validação; nenhum deles apareceu na lista do
+Stylelint. `git diff --check` também passou. A nova CI Linux ainda não foi
+acompanhada neste retorno; alterações permanecem locais, sem commit/push do agente.
 
 ### Pendências originais (registro histórico)
 

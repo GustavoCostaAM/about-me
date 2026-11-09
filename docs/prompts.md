@@ -7,6 +7,8 @@ O quarto, sobre `Please use browser.newContext()`, está registrado por trecho
 literal e resumo explícito do log repetido na seção correspondente de `processo.md`.
 O quinto, sobre imagens/HTML de dist tratados como CSS, está registrado por trechos
 literais e resumo explícito do restante do log, também em `processo.md`.
+O sexto, sobre as três violações do iframe YouTube de Oppenheimer, consta na seção
+correspondente de `processo.md`, com trecho literal e resumo explícito dos targets.
 As instruções de contexto/AGENTS e os resumos anteriores não foram contados como
 prompts de implementação nem reconstruídos como se fossem transcrições.
 

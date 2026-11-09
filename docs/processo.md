@@ -1,7 +1,7 @@
 # Registro observado da implementação
 
 Este registro é cronológico. Os bloqueios de uma etapa anterior podem ter sido
-resolvidos nas seguintes; o estado mais recente está no quinto retorno abaixo.
+resolvidos nas seguintes; o estado mais recente está no sexto retorno abaixo.
 
 ## Origem e histórico disponível
 
@@ -16,10 +16,11 @@ reportadas por `git status --short`. O remoto observado é
 README ou arquivo AGENTS encontrado na árvore do projeto. As instruções AGENTS
 fornecidas na conversa também foram consideradas.
 
-Há **5 prompts do usuário** disponíveis neste histórico: o pedido de implementação,
+Há **6 prompts do usuário** disponíveis neste histórico: o pedido de implementação,
 registrado em [prompts.md](prompts.md), o retorno sobre módulos na CI do PR 1,
 o terceiro retorno com erros de Ubuntu/linters e o quarto com falha de contexto
-do Playwright, além do quinto retorno sobre imagens/HTML tratados como CSS.
+do Playwright, o quinto retorno sobre imagens/HTML tratados como CSS e o sexto
+sobre três violações dentro do player YouTube de Oppenheimer.
 Os retornos estão registrados nas seções correspondentes abaixo.
 As mensagens de andamento do agente descrevem a
 inspeção, as escolhas, os resultados e os bloqueios; não são novos prompts do usuário.
@@ -267,6 +268,40 @@ germinaFlix/saiba Mais/style.css e projects/css/style.css. A pasta dist existia
 com 34 HTML/imagens no momento da validação; nenhum deles apareceu na lista do
 Stylelint. `git diff --check` também passou. A nova CI Linux ainda não foi
 acompanhada neste retorno; alterações permanecem locais, sem commit/push do agente.
+
+### Sexto retorno: semântica do player YouTube incorporado
+
+Trecho literal do prompt:
+
+> erro de semantica para tags html:
+
+```text
+germinaFlix/saiba Mais/oppenheimer/index.html: 3 errors; 0 incomplete rules
+```
+
+Resumo explícito do restante do log fornecido pelo usuário: as outras cinco páginas
+apresentaram zero erros e zero regras incompletas. Em Oppenheimer, as três regras
+foram `aria-allowed-attr`, `aria-prohibited-attr` e `button-name`. Seus targets
+começam por iframe e apontam para `.ytmVideoInfoVideoTitle`, `#movie_player` e
+`.ytmVideoInfoChannelAvatar`, respectivamente. Portanto, os elementos problemáticos
+estão no conteúdo do player incorporado, não nas tags do documento hospedeiro.
+
+O agente substituiu somente o iframe de Oppenheimer por uma seção com título
+associado e link nativo descritivo para o mesmo vídeo, ID `F3OxA9Cz17A`. A página
+agora informa que o trailer abre no YouTube, em vez de oferecer reprodução
+incorporada. O trailer continua acessível. A integração de Havog, sem violações no
+log fornecido, foi mantida.
+
+Nenhum seletor, iframe remanescente, regra ou página foi excluído do axe. As três
+violações não foram reclassificadas como warnings. A mudança corrige a composição
+do conteúdo oferecido pela página, sem tentar alterar a DOM de terceiros.
+
+Após a alteração, `npm run lint` aprovou HTML e as quatro folhas CSS (zero
+problemas); `npm run check:links` aprovou as seis páginas e os 40 arquivos públicos.
+`git diff --check` passou. Não houve nova execução de axe neste retorno, pois o
+Chromium local segue indisponível conforme registrado anteriormente. Nenhuma
+aprovação remota de acessibilidade foi observada após a mudança. Alterações ainda
+locais, sem commit/push do agente e sem deployment.
 
 ### Pendências originais (registro histórico)
 

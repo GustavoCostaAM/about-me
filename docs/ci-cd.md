@@ -161,7 +161,11 @@ descobertas têm resultado e não há violações nem erros de execução locais
 não resolve todos os critérios, a qualidade de toda descrição, a experiência completa
 de teclado/leitor de tela, legendas adequadas ou compreensão do conteúdo. Frames de
 terceiros podem produzir limitações de inspeção e resultados incompletos. Esses
-itens são registrados, sem fingir que foram avaliados por uma pessoa. Não há teste
+itens são registrados, sem fingir que foram avaliados por uma pessoa. O player
+incorporado de Oppenheimer apresentou três violações confirmadas no log enviado
+pelo usuário e foi substituído por um link descritivo para o mesmo trailer no
+YouTube. O iframe de Havog permanece incluído na auditoria; não há exclusões de
+iframes configuradas no teste. Não há teste
 mobile nem avaliação manual de acessibilidade neste escopo.
 
 ## Erros e avisos

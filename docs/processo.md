@@ -1,7 +1,7 @@
 # Registro observado da implementação
 
 Este registro é cronológico. Os bloqueios de uma etapa anterior podem ter sido
-resolvidos nas seguintes; o estado mais recente está no terceiro retorno abaixo.
+resolvidos nas seguintes; o estado mais recente está no quarto retorno abaixo.
 
 ## Origem e histórico disponível
 
@@ -16,9 +16,10 @@ reportadas por `git status --short`. O remoto observado é
 README ou arquivo AGENTS encontrado na árvore do projeto. As instruções AGENTS
 fornecidas na conversa também foram consideradas.
 
-Há **3 prompts do usuário** disponíveis neste histórico: o pedido de implementação,
-registrado em [prompts.md](prompts.md), e o retorno sobre a CI do PR 1, transcrito
-e o terceiro retorno com erros de Ubuntu/linters, nas seções correspondentes abaixo.
+Há **4 prompts do usuário** disponíveis neste histórico: o pedido de implementação,
+registrado em [prompts.md](prompts.md), o retorno sobre módulos na CI do PR 1,
+o terceiro retorno com erros de Ubuntu/linters e o quarto com falha de contexto
+do Playwright. Os retornos estão registrados nas seções correspondentes abaixo.
 As mensagens de andamento do agente descrevem a
 inspeção, as escolhas, os resultados e os bloqueios; não são novos prompts do usuário.
 Existem resumos de conversas anteriores no contexto, não uma transcrição completa;
@@ -200,6 +201,34 @@ Validações observadas:
 A nova CI Linux ainda não foi observada neste retorno. A compatibilidade do runner
 e os resultados de axe devem ser confirmados nela. As alterações acima estão no
 checkout, sem commit/push realizados pelo agente. Não houve merge ou deployment.
+
+### Quarto retorno: contexto explícito para axe/Playwright
+
+Trecho literal do prompt recebido (o log completo repete o mesmo erro nas seis
+páginas listadas pelo teste):
+
+> agora erro em acessibilidade:
+
+```text
+Error: Please use browser.newContext()
+```
+
+O log fornecido pelo usuário lista as seis páginas e uma falha de execução em
+`AxeBuilder.analyze()` para cada uma. Não representa seis violações WCAG: o axe
+não conseguiu concluir as auditorias.
+
+O script criava a página com `browser.newPage()`. O agente verificou o código
+instalado do axe e sua documentação de tratamento de erros: a análise usa páginas
+temporárias para combinar resultados de frames. Alterado para
+`browser.newContext({ viewport })` seguido de `context.newPage()`, por HTML. O
+finally agora fecha o contexto inteiro, incluindo suas páginas temporárias.
+
+Viewport, descoberta das seis páginas, tags WCAG, target-size e critérios de
+erro/aviso foram mantidos. Não foi ativado modo legado nem excluído iframe,
+regra ou página. `node --check tools/accessibility.mjs` passou, assim como a
+checagem de whitespace do diff. A tentativa de `npm run test:a11y` reprovou antes
+de abrir qualquer página: o executável Chromium não existe no cache do ambiente
+local. Não houve confirmação da correção em execução remota neste retorno.
 
 ### Pendências originais (registro histórico)
 

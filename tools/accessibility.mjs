@@ -42,7 +42,10 @@ try {
   browser = await chromium.launch();
   for (const file of pages) {
     console.log(`A11Y PAGE ${file}`);
-    const page = await browser.newPage({ viewport: config.viewport });
+    // Axe opens a temporary page to combine frame results. It needs an explicit
+    // context: browser.newPage() creates an owned context that forbids that page.
+    const context = await browser.newContext({ viewport: config.viewport });
+    const page = await context.newPage();
     const localFailures = [];
     page.on('requestfailed', request => {
       const message = `${file}: ${request.url()}: ${request.failure()?.errorText}`;
@@ -82,7 +85,7 @@ try {
     } catch (error) {
       report.errors.push({ file, message: error.stack || String(error) });
     } finally {
-      await page.close();
+      await context.close();
     }
   }
 } catch (error) {

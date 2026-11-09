@@ -136,7 +136,10 @@ CSS com escapes, geram erro explícito. Não há esses casos no site observado.
 
 ## Acessibilidade: cobertura e limites
 
-Viewport: **1440 × 900 pixels**, Chromium desktop, nova página para cada HTML.
+Viewport: **1440 × 900 pixels**, Chromium desktop, contexto explícito isolado e
+nova página para cada HTML (`browser.newContext()` → `context.newPage()`). O contexto
+é fechado no finally da página, incluindo as páginas temporárias abertas pelo axe
+para combinar resultados de frames. Não é usado o modo legado do axe.
 Tags: `wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa`, `wcag22aa` e `best-practice`.
 A regra `target-size` é explicitamente habilitada para incluir sua verificação
 disponível de WCAG 2.2 AA. Nenhuma página, seletor ou regra foi excluída para

@@ -51,11 +51,12 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
       # deploy-pages reads an artifact of its own run. Preserve the exact tar
       # produced by CI; do not rebuild or check out code in this privileged job.
+      # Each rerun gets its own name so deploy-pages cannot select stale attempts.
       - name: Transfer approved Pages tar to this run
         if: steps.current.outputs.publish == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: github-pages
+          name: github-pages-release-${{ github.run_id }}-${{ github.run_attempt }}
           path: approved-site/artifact.tar
           if-no-files-found: error
           retention-days: 7
@@ -84,3 +85,5 @@ jobs:
         if: steps.final.outputs.publish == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-release-${{ github.run_id }}-${{ github.run_attempt }}

@@ -1,7 +1,7 @@
 # Registro observado da implementação
 
 Este registro é cronológico. Os bloqueios de uma etapa anterior podem ter sido
-resolvidos nas seguintes; o estado mais recente está no sexto retorno abaixo.
+resolvidos nas seguintes; o estado mais recente está no sétimo retorno abaixo.
 
 ## Origem e histórico disponível
 
@@ -16,11 +16,12 @@ reportadas por `git status --short`. O remoto observado é
 README ou arquivo AGENTS encontrado na árvore do projeto. As instruções AGENTS
 fornecidas na conversa também foram consideradas.
 
-Há **6 prompts do usuário** disponíveis neste histórico: o pedido de implementação,
+Há **7 prompts do usuário** disponíveis neste histórico: o pedido de implementação,
 registrado em [prompts.md](prompts.md), o retorno sobre módulos na CI do PR 1,
 o terceiro retorno com erros de Ubuntu/linters e o quarto com falha de contexto
 do Playwright, o quinto retorno sobre imagens/HTML tratados como CSS e o sexto
-sobre três violações dentro do player YouTube de Oppenheimer.
+sobre três violações dentro do player YouTube de Oppenheimer, além do sétimo
+sobre duas violações ARIA no player de Havog.
 Os retornos estão registrados nas seções correspondentes abaixo.
 As mensagens de andamento do agente descrevem a
 inspeção, as escolhas, os resultados e os bloqueios; não são novos prompts do usuário.
@@ -302,6 +303,36 @@ problemas); `npm run check:links` aprovou as seis páginas e os 40 arquivos púb
 Chromium local segue indisponível conforme registrado anteriormente. Nenhuma
 aprovação remota de acessibilidade foi observada após a mudança. Alterações ainda
 locais, sem commit/push do agente e sem deployment.
+
+### Sétimo retorno: atributos ARIA do player de Havog
+
+Trechos literais do prompt:
+
+> temos que fazer ajuste de fonte:
+
+```text
+germinaFlix/saiba Mais/havog/index.html: 2 errors; 0 incomplete rules
+ARIA attribute is not allowed: aria-level="2"
+aria-label attribute cannot be used on a div with no valid role attribute.
+```
+
+Resumo explícito: o log fornecido apresenta zero erros e zero regras incompletas
+nas outras cinco páginas. Em Havog, os targets são iframe/.ytmVideoInfoVideoTitle
+e iframe/#movie_player, para `aria-allowed-attr` e `aria-prohibited-attr`.
+São erros de atributos ARIA dentro do player de terceiros, sem diagnóstico de
+tipografia, tamanho de fonte ou contraste nesse log.
+
+O agente substituiu o iframe de Havog por seção com título associado e link nativo
+descritivo para o mesmo trailer, ID `bBd0d-LORLw`, informando que abre no YouTube.
+Assim como em Oppenheimer, a reprodução passa a ocorrer no YouTube. Não foram
+alterados estilos, fontes, regras do axe, critérios de severidade ou páginas
+auditadas. A validação da nova CI ainda precisa confirmar a auditoria completa.
+
+Após a mudança, `npm run lint` aprovou HTML e as quatro folhas CSS, e
+`npm run check:links` aprovou as seis páginas e os 40 arquivos públicos.
+`git diff --check` não encontrou erros de whitespace. Não foi executado novo axe
+localmente neste retorno, pelo bloqueio de Chromium já registrado. Alterações
+permanecem locais, sem commit/push do agente e sem merge ou deployment.
 
 ### Pendências originais (registro histórico)
 

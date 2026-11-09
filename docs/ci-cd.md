@@ -164,8 +164,9 @@ terceiros podem produzir limitações de inspeção e resultados incompletos. Es
 itens são registrados, sem fingir que foram avaliados por uma pessoa. O player
 incorporado de Oppenheimer apresentou três violações confirmadas no log enviado
 pelo usuário e foi substituído por um link descritivo para o mesmo trailer no
-YouTube. O iframe de Havog permanece incluído na auditoria; não há exclusões de
-iframes configuradas no teste. Não há teste
+YouTube. Em uma execução posterior, o player de Havog também apresentou duas
+violações ARIA e recebeu a mesma substituição por link para seu trailer. Não há
+exclusões de iframes configuradas no teste. Não há teste
 mobile nem avaliação manual de acessibilidade neste escopo.
 
 ## Erros e avisos

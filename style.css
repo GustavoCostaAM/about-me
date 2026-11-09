@@ -1,165 +1,157 @@
-*{
+* {
     margin: 0;
     padding: 0;
-    /* border: solid 1px black; */
 }
 
-/* Configurações Gerais */
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 120px;
 }
 
-hr{
-    width: 80vw;
-    justify-self: center;
-    margin: 10vh;
-}
-
-#firstHr{
-    margin-top: 45vh;
-}
-
-body{
+body {
     background-color: #2d2a2a;
-}
-
-a{
-    text-decoration: none;
-    color: inherit;
-}
-
-body{
     color: #b4b4b4;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-li{
+a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+a:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 4px;
+}
+
+a[aria-current="page"] {
+    color: #ff9a9a;
+}
+
+hr {
+    width: 80vw;
+    margin: 10vh auto;
+}
+
+#first-hr {
+    margin-top: 20vh;
+}
+
+li {
     margin: 2vh;
     font-size: 1.2rem;
 }
 
-#link:active{
-    color: brown;
-}
-
-/* Estilizando header */
-header{
+header {
     display: flex;
     justify-content: center;
-
     position: sticky;
     top: 0;
+    z-index: 1;
 }
 
 header > nav {
-    background-color: #1B1B1B;
+    background-color: #1b1b1b;
     padding: 2vh 2vw;
-
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-
     width: 87vw;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
 
-.ulHeader{
+.ul-header {
     list-style-type: none;
     display: flex;
-
-    gap: 0 20%;
-
+    gap: 2vw;
     text-align: center;
     align-items: center;
 }
 
-#linksHeader{
-    display: flex;
-    gap: 30%;
+.ul-header a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    min-width: 28px;
 }
-.imgIcoHeader{
+
+.img-ico-header {
     height: 3vh;
     width: auto;
 }
 
-/* Editando a main */
-main{
+.intro-layout {
     display: flex;
     justify-content: space-evenly;
-
-    padding-top: 10vh;
-    padding-bottom: 2.5vh;
-    padding-left: 2.5vw;
-    padding-right: 2.5vw;
+    padding: 10vh 2.5vw 2.5vh;
 }
 
-#divIntro{
+#div-intro {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
     width: 40vw;
     text-align: justify;
-
     gap: 3vh;
 }
 
-#textoIntro{
+#texto-intro {
     width: 30vw;
     font-size: 1.2rem;
+    line-height: 1.5;
 }
 
-#buttonIntro{
-    background-color: #00C97A;
-    border: none;
-    color: white;
-
+#button-intro {
+    display: inline-block;
+    background-color: #00c97a;
+    color: #10241c;
     padding: 5%;
-
     width: 20vw;
-
-    box-shadow: 0 0 25px rgba(99, 187, 27, 0.7);
+    text-align: center;
+    box-shadow: 0 0 25px rgb(99 187 27 / 70%);
     border-radius: 5px;
-
     transition: background-color 0.5s ease, box-shadow 0.5s ease;
 }
 
-#buttonIntro:hover{
-    cursor: pointer;
-    box-shadow: 0 0 25px rgba(69, 132, 19, 0.4);
+#button-intro:hover {
+    box-shadow: 0 0 25px rgb(69 132 19 / 40%);
 }
 
-#fotoIntro{
+#foto-intro {
     width: 20vw;
     height: 20vw;
     object-fit: cover;
     border-radius: 50%;
 }
 
-/* estilizando worked with */
-#fundoWorkedWith{
-    display: flex;
-}
-
-/* estilizando as infos */
-.info{
+.info {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
+    gap: 3vw;
 }
 
-.listaInfo{
+.lista-info {
     width: 32vw;
 }
 
-.imgInfo{
+.img-info {
     width: 30vw;
+    object-fit: contain;
 }
 
-footer{
-    margin-top: 3%;
-    
+footer {
+    margin: 3% 0;
     align-items: center;
     justify-content: center;
     display: flex;
+    text-align: center;
+}
+
+footer a {
+    display: inline-block;
+    padding: 6px;
 }

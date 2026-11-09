@@ -1,0 +1,86 @@
+name: CD - GitHub Pages
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+permissions: {}
+
+# Keep a running deployment intact and serialize all releases. A stale queued
+# run is checked against main after acquiring this slot and again before deploy.
+concurrency:
+  group: github-pages-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_branch == 'main' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      actions: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Reject outdated CI commit
+        id: current
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data } = await github.rest.repos.getBranch({ ...context.repo, branch: 'main' });
+            const sha = context.payload.workflow_run.head_sha;
+            core.setOutput('publish', data.commit.sha === sha ? 'true' : 'false');
+            core.info(`Approved CI SHA: ${sha}; current main: ${data.commit.sha}`);
+      - name: Download only the triggering successful CI artifact
+        if: steps.current.outputs.publish == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: approved-site
+          github-token: ${{ github.token }}
+          run-id: ${{ github.event.workflow_run.id }}
+      # deploy-pages reads an artifact of its own run. Preserve the exact tar
+      # produced by CI; do not rebuild or check out code in this privileged job.
+      - name: Transfer approved Pages tar to this run
+        if: steps.current.outputs.publish == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: approved-site/artifact.tar
+          if-no-files-found: error
+          retention-days: 7
+      - name: Verify existing Pages URL and publishing source
+        if: steps.current.outputs.publish == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: pages } = await github.rest.repos.getPages(context.repo);
+            const expected = 'https://gustavocostaam.github.io/about-me/';
+            if (pages.html_url.toLowerCase().replace(/\/$/, '') !== expected.replace(/\/$/, '')) {
+              throw new Error(`Unexpected public URL ${pages.html_url}; inspect site.config.json before deploying`);
+            }
+            if (pages.build_type !== 'workflow') {
+              throw new Error('Pages must use GitHub Actions before merge; see docs/ci-cd.md migration procedure');
+            }
+      - name: Recheck main immediately before deployment
+        if: steps.current.outputs.publish == 'true'
+        id: final
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data } = await github.rest.repos.getBranch({ ...context.repo, branch: 'main' });
+            core.setOutput('publish', data.commit.sha === context.payload.workflow_run.head_sha ? 'true' : 'false');
+      - name: Deploy approved artifact
+        if: steps.final.outputs.publish == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4

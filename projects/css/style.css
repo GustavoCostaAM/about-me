@@ -1,17 +1,20 @@
-main{
+main {
     display: flex;
     flex-direction: column;
+    gap: 4vh;
+    padding: 8vh 4vw;
 }
 
-.textExplanation{
+.text-explanation {
     width: 40%;
+    line-height: 1.6;
 }
 
-.imgProject{
+.img-project {
     width: 20%;
 }
 
-.linkExplanation{
-    color: rgb(147, 147, 199);
+.link-explanation {
+    color: #b4b4ef;
     text-decoration: underline;
 }

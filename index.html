@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="PT-BR">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,76 +10,80 @@
     <header>
         <nav>
             <div>
-                <ul class="ulHeader">
-                    <li><a href="index.html" style="color: brown">Inicio</a></li>
+                <ul class="ul-header">
+                    <li><a href="index.html" aria-current="page">Inicio</a></li>
                     <li><a href="projects/projects.html">Projetos</a></li>
-                    <li><a href="germinaFlix/index.html" id="link">GerminaFlix</a></li>
-                    <li><a href="mailto:gustavo.macal@germinare.org.br" id="link">Contato</a></li>
+                    <li><a href="germinaFlix/index.html" class="nav-link">GerminaFlix</a></li>
+                    <li><a href="mailto:gustavo.macal@germinare.org.br" class="nav-link">Contato</a></li>
                 </ul>
             </div>
-            
+
             <div>
-                <ul class="ulHeader" id="linksHeader">
-                    <li><a href="#"><img src="images/homePage/LinkedIn.png" alt="Link do LinkedIn" class="imgIcoHeader"></a></li>
-                    <li><a href="https://github.com/GustavoCostaAM" target="_blank"><img src="images/homePage/github.png" alt="Link do Github" class="imgIcoHeader" id="imgGithub"></a></li>
+                <ul class="ul-header" id="links-header">
+                    <li><a href="#"><img src="images/homePage/LinkedIn.png" alt="Link do LinkedIn" class="img-ico-header"></a></li>
+                    <li><a href="https://github.com/GustavoCostaAM" target="_blank" rel="noopener noreferrer"><img src="images/homePage/github.png" alt="Link do Github" class="img-ico-header" id="img-github"></a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
-    <main id="divMain"> <!-- main about me -->
-        <div id="divIntro">
-            <p id="textoIntro">Meu nome é Gustavo Costa, nasci em 22/09/2009 em São Bernado do Campo. Atualmente moro com dois irmãos, minha mãe e meu padastro.
-                atualmente estudo no instituto J&F.
+    <main>
+    <div id="div-main" class="intro-layout"> <!-- main about me -->
+        <div id="div-intro">
+            <h1>Gustavo Costa</h1>
+            <p id="texto-intro">Meu nome é Gustavo Costa, nasci em 22/09/2009 em São Bernado do Campo. Atualmente moro com dois irmãos, minha mãe e meu padastro.
+                atualmente estudo no instituto J&amp;F.
             </p>
-            <a href="#curiosidades" id="linkIntro"><button id="buttonIntro">Conheça mais</button></a>
+            <a href="#curiosidades" id="button-intro">Conheça mais</a>
         </div>
         <div>
-            <img src="images/homePage/fotoMain.jpg" alt="Minha foto" id="fotoIntro">
+            <img src="images/homePage/fotoMain.jpg" alt="Minha foto" id="foto-intro">
         </div>
-    </main>
+    </div>
 
-    <hr id="firstHr"> <!-- Divisa de tópico -->
+    <hr id="first-hr"> <!-- Divisa de tópico -->
 
     <section class="info" id="curiosidades"> <!-- Section Curiosidades -->
-        <img src="images/homePage/grupoInter.jpg" alt="Grupo do meu interdisciplinar" class="imgInfo">
-        <ol type="a" class="listaInfo">
-            <h1>Curiosidades</h1>
+        <img src="images/homePage/grupoInter.jpg" alt="Grupo do meu interdisciplinar" class="img-info">
+        <div class="info-text"><h2>Curiosidades</h2>
+        <ol type="a" class="lista-info">
             <li>Jogo tenis de mesa</li>
             <li>Não gosto de chocolate preto (apenas o branco)</li>
             <li>Tenho um irmão gêmeo</li>
             <li>Já quebrei o pé</li>
             <li>Tenho dois projetos, ScaneIA e Trustable Feedback for Marketplaces</li>
-        </ol>
+        </ol></div>
     </section>
 
     <hr> <!-- Divisa de tópico -->
 
     <section class="info"> <!-- Section Lugares Conhecidos -->
-        <ul class="listaInfo">
-            <h1>Lugares que já fui</h1>
+        <div class="info-text"><h2>Lugares que já fui</h2>
+        <ul class="lista-info">
             <li>Minas Gerais (quase sul de bahia)</li>
             <li>Santa Catarina</li>
             <li>São Roque</li>
             <li>Campinas</li>
             <li>Laguna</li>
-        </ul>
-        <img src="images/homePage/cidade-de-laguna.jpg" alt="Imagem de Laguna" class="imgInfo">
+        </ul></div>
+        <img src="images/homePage/cidade-de-laguna.jpg" alt="Imagem de Laguna" class="img-info">
     </section>
 
     <hr> <!-- Divisa de tópico -->
 
     <section class="info" id="lugares"> <!-- Section Lugares para Conhecer -->
-        <img src="images/homePage/japao-centro.jpg" alt="Imagem de Japão" class="imgInfo">
-        <ol type="I" class="listaInfo">
-            <h1>Lugares que quero ir</h1>
+        <img src="images/homePage/japao-centro.jpg" alt="Imagem de Japão" class="img-info">
+        <div class="info-text"><h2>Lugares que quero ir</h2>
+        <ol type="I" class="lista-info">
             <li>Estados Unidos</li>
             <li>Espanha</li>
             <li>Japão</li>
             <li>França</li>
             <li>Arábia Saudita</li>
-        </ol>
+        </ol></div>
     </section>
+
+    </main>
 
     <footer>
         <div>

@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.18.0'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Build complete public site
+        run: npm run build
+      - name: HTML lint
+        if: ${{ !cancelled() }}
+        run: npm run lint:html
+      - name: CSS lint
+        if: ${{ !cancelled() }}
+        run: npm run lint:css
+      - name: Integrity checker regression tests
+        if: ${{ !cancelled() }}
+        run: npm run test:integrity
+      - name: Local paths and anchors
+        if: ${{ !cancelled() }}
+        run: npm run check:links
+      - name: External links (availability warnings)
+        if: ${{ !cancelled() }}
+        run: npm run check:external
+      - name: All HTML pages - desktop accessibility
+        if: ${{ !cancelled() }}
+        run: npm run test:a11y
+      - name: Save diagnostics and complete page manifests
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-reports
+          path: reports/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Save approved site for CD
+        if: ${{ success() && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+          retention-days: 7
+

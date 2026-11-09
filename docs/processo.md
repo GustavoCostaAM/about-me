@@ -1,5 +1,8 @@
 # Registro observado da implementação
 
+Este registro é cronológico. Os bloqueios de uma etapa anterior podem ter sido
+resolvidos nas seguintes; o estado mais recente está no terceiro retorno abaixo.
+
 ## Origem e histórico disponível
 
 Atividade lida: `0e4b9f66-88a6-4c4c-ab50-9cface7855f0_19b - Lab CICD-Pipeline.pdf`,
@@ -13,9 +16,10 @@ reportadas por `git status --short`. O remoto observado é
 README ou arquivo AGENTS encontrado na árvore do projeto. As instruções AGENTS
 fornecidas na conversa também foram consideradas.
 
-Há **2 prompts do usuário** disponíveis neste histórico: o pedido de implementação,
+Há **3 prompts do usuário** disponíveis neste histórico: o pedido de implementação,
 registrado em [prompts.md](prompts.md), e o retorno sobre a CI do PR 1, transcrito
-na seção correspondente abaixo. As mensagens de andamento do agente descrevem a
+e o terceiro retorno com erros de Ubuntu/linters, nas seções correspondentes abaixo.
+As mensagens de andamento do agente descrevem a
 inspeção, as escolhas, os resultados e os bloqueios; não são novos prompts do usuário.
 Existem resumos de conversas anteriores no contexto, não uma transcrição completa;
 não foram usados para inventar interações nem contar prompts históricos.
@@ -133,6 +137,69 @@ resolução não determinística de dependências durante o Actions.
 **Pendência bloqueante:** gerar e versionar o lock em ambiente com acesso npm,
 executar a suíte e acompanhar nova CI. Estas alterações locais não comprovam a
 correção da execução remota informada.
+
+### Terceiro retorno: Ubuntu, opção de CLI e especificidade CSS
+
+Prompt do usuário:
+
+> os seguintes erros foram encontrados:
+
+```text
+Run npx --no-install playwright install --with-deps chromium
+BEWARE: your OS is not officially supported by Playwright; installing dependencies for ubuntu26.04-x64 as a fallback.
+Cannot install dependencies for ubuntu26.04-x64 with Playwright 1.55.1!
+Failed to install browsers
+Error: ERROR: Playwright does not support chromium on ubuntu26.04-x64
+
+ about-me@1.0.0 lint:html
+> html-validate "**/*.html" --ignore-pattern node_modules/** --ignore-pattern dist/** --ignore-pattern reports/**
+
+unknown option --ignore-pattern
+
+> about-me@1.0.0 lint:css
+> stylelint "**/*.css" --ignore-pattern node_modules/** --ignore-pattern dist/**
+
+style.css
+  154:1  ✖  Expected selector "footer a" to come before selector "a:focus-visible", at line 23  no-descending-specificity
+
+✖ 1 problem (1 error, 0 warnings)
+```
+
+Na inspeção deste retorno, o HEAD é `c7ba02b`, branch `feature/ci-cd`, e o lock já
+está versionado. As cinco dependências de desenvolvimento estão disponíveis.
+Isso supera os bloqueios anteriores de ausência de lock e pacotes neste checkout.
+
+Correções do agente:
+
+- Fixado runner `ubuntu-24.04`, compatível com a versão fixada do Playwright,
+  evitando a mudança implícita do sistema por `ubuntu-latest`.
+- Substituída a opção inexistente `--ignore-pattern` do HTML Validate pelo arquivo
+  `.htmlvalidateignore`, com somente node_modules, dist e reports.
+- Reordenados `footer a`, `a:focus-visible` e `a[aria-current="page"]` para manter
+  a regra de especificidade ativa. Uma primeira reordenação revelou conflito também
+  com `.ul-header a`; a ordem final resolveu os dois diagnósticos, sem mudar valores.
+- A execução efetiva de HTML Validate revelou mais 11 erros: SRI ausente nos links
+  de estilos e duas regiões de catálogo com elemento não nativo. Adicionados hashes
+  SHA-384 e trocados os wrappers por section, mantendo classes, nomes e tabindex.
+- Adicionados comando `update:sri`, verificação de SRI desatualizado e dois testes
+  de regressão. `.gitattributes` fixa LF para evitar divergência dos hashes entre
+  Windows e Linux. Nenhuma regra ou página-fonte foi suprimida.
+- A execução via launchers `.cmd` locais falhou buscando html-validate fora do
+  projeto. Os scripts npm agora chamam os entrypoints dos CLIs instalados pelo Node.
+
+Validações observadas:
+
+| Comando | Resultado |
+| --- | --- |
+| `npm run lint` | HTML e CSS aprovados, código 0 |
+| `npm run test:integrity` | 10 testes aprovados |
+| `python tools/site.py check` | 6 páginas e 40 arquivos públicos, sem erros locais/SRI |
+| `python tools/site.py build` | Bloqueado por WinError 5 ao remover dist/germinaFlix/main no Windows |
+| `node tools/accessibility.mjs` | Reprovou antes da auditoria: Chromium não instalado no cache deste ambiente |
+
+A nova CI Linux ainda não foi observada neste retorno. A compatibilidade do runner
+e os resultados de axe devem ser confirmados nela. As alterações acima estão no
+checkout, sem commit/push realizados pelo agente. Não houve merge ou deployment.
 
 ### Pendências originais (registro histórico)
 

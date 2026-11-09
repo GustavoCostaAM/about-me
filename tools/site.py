@@ -5,6 +5,8 @@ Python 3.11+, standard library only. No server or network for local integrity.
 from __future__ import annotations
 
 import concurrent.futures
+import base64
+import hashlib
 import json
 import re
 import shutil
@@ -47,6 +49,7 @@ class Document(HTMLParser):
         super().__init__(convert_charrefs=True)
         self.ids = set()
         self.references = []
+        self.resources = []
         self.duplicates = []
         self.style_depth = False
         self.inline_css = []
@@ -55,6 +58,10 @@ class Document(HTMLParser):
 
     def handle_starttag(self, tag, attributes):
         attrs = dict(attributes)
+        if tag == "link" and "stylesheet" in attrs.get("rel", "").split() and attrs.get("href"):
+            self.resources.append((attrs["href"], attrs.get("integrity")))
+        if tag == "script" and attrs.get("src"):
+            self.resources.append((attrs["src"], attrs.get("integrity")))
         if "id" in attrs:
             if attrs["id"] in self.ids:
                 self.duplicates.append(attrs["id"])
@@ -141,6 +148,17 @@ def check(root=ROOT):
     errors, external = [], set()
     for page, document in documents.items():
         errors.extend(f"{page}: duplicate id {value}" for value in document.duplicates)
+        for reference, integrity in document.resources:
+            if not integrity:
+                continue  # Missing attributes are errors in HTML Validate.
+            try:
+                if resolve_reference(page, reference, files, documents):
+                    continue
+                asset = unquote(urlsplit(urljoin(BASE + page, reference)).path)[len(CONFIG["basePath"]):]
+                if not valid_integrity((root / asset).read_bytes(), integrity):
+                    errors.append(f"{page}: stale or invalid SRI for {reference}; run npm run update:sri")
+            except ValueError as error:
+                errors.append(f"{page}: {reference!r}: {error}")
     for file in files:
         references = []
         if file in documents:
@@ -159,6 +177,48 @@ def check(root=ROOT):
     report = {"baseUrl": BASE, "pages": sorted(documents), "files": files,
               "errors": errors, "externalUrls": sorted(external)}
     return report
+
+
+def valid_integrity(content, integrity):
+    candidates = [token.split("-", 1) for token in integrity.split() if "-" in token]
+    supported = [(algorithm, value) for algorithm, value in candidates
+                 if algorithm in {"sha256", "sha384", "sha512"}]
+    if not supported:
+        return False
+    # Like the browser, require a match from the strongest provided algorithm.
+    strongest = max(algorithm for algorithm, _ in supported)
+    actual = base64.b64encode(hashlib.new(strongest, content).digest()).decode("ascii")
+    return any(value == actual for algorithm, value in supported if algorithm == strongest)
+
+
+def update_sri(root=ROOT):
+    files = inventory(root)
+    # Hash the same LF bytes that Git checks out on Linux (see .gitattributes).
+    for file in files:
+        if file.lower().endswith(".css"):
+            content = (root / file).read_text(encoding="utf-8")
+            with (root / file).open("w", encoding="utf-8", newline="\n") as output:
+                output.write(content)
+    documents = {file: Document((root / file).read_text(encoding="utf-8"))
+                 for file in files if file.lower().endswith(".html")}
+    for page in documents:
+        def replace(match):
+            tag = match.group(0)
+            resources = Document(tag).resources
+            if not resources:
+                return tag
+            reference, _ = resources[0]
+            if resolve_reference(page, reference, files, documents):
+                return tag  # No fetching or changing third-party SRI.
+            asset = unquote(urlsplit(urljoin(BASE + page, reference)).path)[len(CONFIG["basePath"]):]
+            digest = base64.b64encode(hashlib.sha384((root / asset).read_bytes()).digest()).decode("ascii")
+            tag = re.sub(r'''\s+integrity\s*=\s*(?:"[^"]*"|'[^']*')''', "", tag, flags=re.I)
+            return tag[:-1] + f' integrity="sha384-{digest}">'
+        source = (root / page).read_text(encoding="utf-8")
+        source = re.sub(r"<(?:link|script)\b[^>]*>", replace, source, flags=re.I)
+        with (root / page).open("w", encoding="utf-8", newline="\n") as output:
+            output.write(source)
+    print(f"Updated local stylesheet/script SRI in {len(documents)} HTML pages")
 
 
 def build():
@@ -197,6 +257,9 @@ def main():
     command = sys.argv[1] if len(sys.argv) > 1 else "check"
     if command == "build":
         build()
+        return
+    if command == "sri":
+        update_sri()
         return
     report = check()
     save_report("integrity.json", report)

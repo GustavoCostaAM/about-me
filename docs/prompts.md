@@ -2,6 +2,7 @@
 
 O primeiro prompt de implementação está transcrito abaixo. O segundo prompt,
 sobre módulos ausentes na CI, está transcrito em `processo.md`, na seção do PR 1.
+O terceiro, com erros de Playwright e linters, também está transcrito em `processo.md`.
 As instruções de contexto/AGENTS e os resumos anteriores não foram contados como
 prompts de implementação nem reconstruídos como se fossem transcrições.
 

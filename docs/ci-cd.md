@@ -5,16 +5,18 @@
 Os arquivos foram escritos no checkout local, mas a implementação **ainda não
 atingiu os critérios de aceite**. Não fazer merge neste estado.
 
-Faltam gerar e versionar `package-lock.json`, instalar os pacotes, executar os
-linters e o axe, corrigir seus resultados e acompanhar a CI do PR 1 informado pelo
-usuário. O checkout atual está em `feature/ci-cd`, no commit `36697d1`; as correções
-deste retorno ainda são locais. A rede do terminal falhou com `ENOTFOUND`; `.git`
-está somente para leitura. A configuração remota do Pages não foi confirmada.
+O lock está versionado e as dependências estão presentes no checkout. Lint HTML,
+lint CSS, integridade das seis páginas e dez testes do verificador passaram após
+as últimas correções. O checkout está em `feature/ci-cd`, com base em `c7ba02b`;
+as correções deste retorno ainda são locais. Falta acompanhar nova CI do PR 1,
+validar Chromium/axe e confirmar Pages. A auditoria local não iniciou por falta
+do navegador; a remontagem de dist também encontrou permissão negada no Windows.
 
 ## Fluxo preparado
 
 1. `CI` executa em pushes na `main` e PRs destinados à `main`.
-2. Faz checkout sem persistir credenciais, configura Node 22.18.0 e Python 3.11,
+2. No runner fixo Ubuntu 24.04 (compatível com Playwright 1.55.1), faz checkout sem
+   persistir credenciais, configura Node 22.18.0 e Python 3.11,
    instala pelo lock com `npm ci` e instala Chromium do Playwright.
 3. Monta `dist/`, executa os dois linters, testes do verificador, integridade local,
    disponibilidade externa e acessibilidade HTTP de todas as páginas.
@@ -50,26 +52,24 @@ do PR permite validar CI, mas não valida a integração de CD. Não há `workfl
 | axe-core via @axe-core/playwright | Regras automáticas aplicáveis de WCAG e boas práticas, diagnóstico por regra e nó |
 | GitHub Pages e actions oficiais | Hospedagem estática existente, artefato Pages e autorização OIDC sem PAT de deployment |
 
-As versões diretas estão fixadas no `package.json`. **Isso sozinho não fixa as
-transitivas.** A instalação determinística só estará pronta depois de gerar,
-validar e versionar o lock. O workflow usa `npm ci` e deve falhar enquanto ele
-estiver ausente, em vez de resolver versões silenciosamente na CI.
+As versões diretas estão fixadas no `package.json` e as transitivas no lock
+versionado. O workflow usa `npm ci --include=dev` e reprova ausência ou divergência
+do lock, em vez de resolver versões silenciosamente na CI.
 
 ## Instalação e comandos locais
 
 Pré-requisitos: Node 22.18.0, npm 10, Python 3.11, acesso ao registro npm e ao download
-do Chromium. No primeiro ambiente com rede, completar a implementação:
+do Chromium. Com o lock versionado, instalar e validar:
 
 ```sh
-npm install --package-lock-only --ignore-scripts
-npm ci
+npm ci --include=dev
 npx playwright install --with-deps chromium
 npm run test:integrity
 npm test
 ```
 
-Revisar o lock e versioná-lo na mesma branch. Em todas as instalações seguintes usar
-`npm ci`, que rejeita divergências entre manifesto e lock.
+Se mudar versões de dependências, atualizar/revisar o lock e versioná-lo na mesma
+branch. Nas instalações usar `npm ci`, que rejeita divergências com o manifesto.
 
 | Comando | Verificação/resultado |
 | --- | --- |
@@ -77,6 +77,7 @@ Revisar o lock e versioná-lo na mesma branch. Em todas as instalações seguint
 | `npm run lint:html` | Lint de todos os HTML do site |
 | `npm run lint:css` | Lint de todos os CSS do site |
 | `npm run check:links` | Integridade local sem rede; `reports/integrity.json` |
+| `npm run update:sri` | Atualiza SHA-384 dos estilos/scripts locais e normaliza CSS para LF |
 | `npm run check:external` | HEAD, fallback GET e diagnóstico externo em `reports/external-links.json` |
 | `npm run test:a11y` | Servidor HTTP temporário, Chromium e axe; `reports/accessibility.json` |
 | `npm run test:integrity` | Testes de regressão do verificador |
@@ -85,6 +86,17 @@ Revisar o lock e versioná-lo na mesma branch. Em todas as instalações seguint
 O servidor é criado dentro do teste de acessibilidade, usa porta livre em loopback,
 aceita somente arquivos do manifesto e fecha ao terminar. Não é necessário iniciá-lo
 manualmente. Rodar `build` antes de `test:a11y` para não testar uma cópia antiga.
+
+HTML Validate usa `.htmlvalidateignore` para ignorar somente dependências e saídas
+geradas, sem excluir páginas-fonte do site. Os dois CLIs são chamados pelo Node,
+evitando um problema observado nos launchers `.cmd` locais do Windows. O glob
+continua cobrindo todos os arquivos HTML/CSS do site.
+
+As folhas locais têm SRI SHA-384 nos HTML. Após editar CSS, executar
+`npm run update:sri` e versionar os HTML atualizados junto com o CSS. O checker de
+integridade reprova hashes desatualizados, para impedir que o navegador recuse os
+estilos publicados. `.gitattributes` fixa LF para CSS/HTML, preservando no Linux
+os mesmos bytes usados nos hashes; não há regeneração silenciosa de hashes na CI.
 
 ## Site e escopo público
 

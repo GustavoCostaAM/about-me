@@ -20,13 +20,9 @@ a {
     text-underline-offset: 0.2em;
 }
 
-a:focus-visible {
-    outline: 3px solid #fff;
-    outline-offset: 4px;
-}
-
-a[aria-current="page"] {
-    color: #ff9a9a;
+footer a {
+    display: inline-block;
+    padding: 6px;
 }
 
 hr {
@@ -151,7 +147,11 @@ footer {
     text-align: center;
 }
 
-footer a {
-    display: inline-block;
-    padding: 6px;
+a:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 4px;
+}
+
+a[aria-current="page"] {
+    color: #ff9a9a;
 }

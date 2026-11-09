@@ -48,6 +48,23 @@ class IntegrityTests(unittest.TestCase):
             (root / "orphan.html").write_text("public")
             self.assertEqual(site.inventory(root), ["orphan.html"])
 
+    def test_sri_updates_lf_bytes_and_detects_stale_stylesheet(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "index.html").write_text('<link rel="stylesheet" href="style.css">', encoding="utf-8")
+            css = root / "style.css"
+            css.write_bytes(b"a { color: red; }\r\n")
+            site.update_sri(root)
+            self.assertNotIn(b"\r", css.read_bytes())
+            self.assertEqual(site.check(root)["errors"], [])
+            css.write_bytes(b"a { color: blue; }\n")
+            self.assertTrue(any("stale or invalid SRI" in error for error in site.check(root)["errors"]))
+
+    def test_sri_requires_matching_strongest_hash(self):
+        content = b"stylesheet"
+        weak = site.base64.b64encode(site.hashlib.sha256(content).digest()).decode("ascii")
+        self.assertFalse(site.valid_integrity(content, f"sha256-{weak} sha512-invalid"))
+
 
 if __name__ == "__main__":
     unittest.main()

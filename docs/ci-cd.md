@@ -6,8 +6,9 @@ Os arquivos foram escritos no checkout local, mas a implementação **ainda não
 atingiu os critérios de aceite**. Não fazer merge neste estado.
 
 Faltam gerar e versionar `package-lock.json`, instalar os pacotes, executar os
-linters e o axe, corrigir seus resultados, criar a branch e os commits, fazer push,
-abrir o PR e acompanhar sua CI. A rede do terminal falhou com `ENOTFOUND`; `.git`
+linters e o axe, corrigir seus resultados e acompanhar a CI do PR 1 informado pelo
+usuário. O checkout atual está em `feature/ci-cd`, no commit `36697d1`; as correções
+deste retorno ainda são locais. A rede do terminal falhou com `ENOTFOUND`; `.git`
 está somente para leitura. A configuração remota do Pages não foi confirmada.
 
 ## Fluxo preparado

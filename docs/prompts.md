@@ -1,6 +1,7 @@
 # Prompt observado nesta execução
 
-Há um prompt de implementação disponível. Transcrição do pedido do usuário abaixo.
+O primeiro prompt de implementação está transcrito abaixo. O segundo prompt,
+sobre módulos ausentes na CI, está transcrito em `processo.md`, na seção do PR 1.
 As instruções de contexto/AGENTS e os resumos anteriores não foram contados como
 prompts de implementação nem reconstruídos como se fossem transcrições.
 

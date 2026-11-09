@@ -13,8 +13,9 @@ reportadas por `git status --short`. O remoto observado é
 README ou arquivo AGENTS encontrado na árvore do projeto. As instruções AGENTS
 fornecidas na conversa também foram consideradas.
 
-Há **1 prompt de implementação** diretamente disponível nesta execução, registrado
-em [prompts.md](prompts.md). As mensagens de andamento do agente descrevem a
+Há **2 prompts do usuário** disponíveis neste histórico: o pedido de implementação,
+registrado em [prompts.md](prompts.md), e o retorno sobre a CI do PR 1, transcrito
+na seção correspondente abaixo. As mensagens de andamento do agente descrevem a
 inspeção, as escolhas, os resultados e os bloqueios; não são novos prompts do usuário.
 Existem resumos de conversas anteriores no contexto, não uma transcrição completa;
 não foram usados para inventar interações nem contar prompts históricos.
@@ -102,6 +103,38 @@ observados e hashes dos arquivos públicos. Os JSON completos regeneráveis fica
 em reports, ignorados pelo Git e excluídos da publicação.
 
 ## Continuação em ambiente com permissões e rede
+
+### Retorno do usuário: falha de módulos na CI do PR 1
+
+Segundo prompt observado, após a implementação inicial:
+
+> deu erro ao rodar pipeline de ci, veja no github: https://github.com/GustavoCostaAM/about-me/actions/runs/42546199608/job/128931638785?pr=1
+>
+> os erros são relacionados ao tentar encontrar modulos
+
+O checkout agora está na branch `feature/ci-cd`, com commit `36697d1`, e o usuário
+forneceu um link de execução do PR 1. Isso atualiza o estado anterior: há trabalho
+commitado e uma execução remota informada. Não foi possível ler seus logs pelo
+acesso web nem pela integração de diagnósticos; a causa remota exata não foi
+confirmada. O link é evidência fornecida pelo usuário, não uma execução inspecionada.
+
+No checkout, `package-lock.json` continua ausente e não está versionado. Isso impede
+`npm ci` e o cache npm de setup-node. As condições `!cancelled()` permitiam executar
+linters e axe mesmo depois da falha de instalação, causando falhas secundárias por
+dependências ausentes. A nova tentativa de gerar o lock falhou com
+`ENOTFOUND registry.npmjs.org`.
+
+O agente adicionou diagnóstico explícito para lock ausente, instalação com
+`npm ci --include=dev`, uso do Playwright local com `npx --no-install` e condições
+de sucesso dos pré-requisitos antes das verificações. A instalação continua
+obrigatória e qualquer falha continua bloqueando CI e CD. Não foi trocada por uma
+resolução não determinística de dependências durante o Actions.
+
+**Pendência bloqueante:** gerar e versionar o lock em ambiente com acesso npm,
+executar a suíte e acompanhar nova CI. Estas alterações locais não comprovam a
+correção da execução remota informada.
+
+### Pendências originais (registro histórico)
 
 Manter as alterações locais. Criar `feat/ci-cd-pages`, gerar o lock, executar todos
 os comandos de validação e corrigir as ferramentas escolhidas sem relaxar regras.
